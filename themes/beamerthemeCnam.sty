@@ -1,0 +1,83 @@
+% <<< Preamble
+% Main style file for the BEAMER CNAM THEME 2020
+% Copyright 2020 by RFS
+% This file may be distributed and/or modified
+% 	1. under the LaTeX Project Public License and/or
+% 	2. under the GNU Public License.
+%
+% Comments: This is still a work in progress.
+% Based on: beamerthemeIthaca by Raul Gomez
+% Based on: beamerthemeFlip by Flip Tanedo
+% >>>
+
+\mode<presentation>
+
+% <<< Global Options
+
+\DeclareOptionBeamer{bullet}{\PassOptionsToPackage{bullet=#1}{beamerinnerthemeflat}}
+\DeclareOptionBeamer{nobigpagenumber}{\PassOptionsToPackage{nobigpagenumber}{beamerouterthemesolidinfolines}}
+\DeclareOptionBeamer{nofootline}{\PassOptionsToPackage{nofootline}{beamerouterthemesolidinfolines}}
+\DeclareOptionBeamer{watermark}{\PassOptionsToPackage{watermark=#1}{beamerouterthemesolidinfolines}}
+\DeclareOptionBeamer{grey}{\PassOptionsToPackage{grey}{beamercolorthemeBigRed}}
+
+\ProcessOptionsBeamer
+
+% >>>
+
+% <<< Calls to auxiliary theme files
+
+\useinnertheme{flat}	% Calls beamerinnerthemeflat.sty
+\useoutertheme{solidinfolines}	% Calls beamerouterthemesolidinfolines.sty
+\usecolortheme{BigRed}		% Calls beamercolorthemebear.sty
+% >>>
+
+% <<< Navigation  symbols
+
+\setbeamertemplate{navigation symbols}{} 	% Turns off PDF navigation symbols
+
+% >>>
+
+% <<< Getting the appendix to work properly
+
+\renewcommand{\appendix}{%
+\setcounter{section}{0}%
+\renewcommand{\thesection}{\Alph{section}}}%
+
+% >>>
+
+% <<< A useful command
+\newcommand{\bigpause}{\pause\bigskip}
+% >>>
+
+% <<< Fonts
+
+%% Default font: lmodern, doesn't require fontspec % solves some default warnings
+\usepackage{fontspec}
+\usepackage{mathptmx}
+%\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Fira Sans}
+\setsansfont{Fira Sans}
+\setmonofont{Inconsolata}
+%% Protects fonts from Beamer screwing with them
+%% http://tex.stackexchange.com/questions/10488/force-computer-modern-in-math-mode
+%\usefonttheme{professionalfonts}
+
+% >>>
+
+% <<< BeginSections
+\AtBeginSection{\frame[plain]{\sectionpage}\addtocounter{framenumber}{-1}}
+\setbeamertemplate{section page}{%
+	\begin{beamercolorbox}[wd=\the\paperwidth, ht=\the\paperheight]{}
+    \begin{tikzpicture}[overlay]
+    \fill[color=cnamRed] (-1cm, 3.9cm) rectangle(12.8cm, 6.1cm);
+    \node[text width=12cm,align=center] at (6.4cm, 5cm) {\color{warm grey 3}\Huge{\insertsection}};
+    %\node[anchor=north west,text width=11.8cm,align=left] at (2cm, 3cm) {\color{cnamRed}\small{\noindent\insertsubsectionnavigation{5cm}\par}};
+    %\node[anchor=north west,text width=11.8cm,align=left] at (2cm, 3cm) {\color{cnamRed}\small{\noindent\tableofcontents[sectionstyle=hide/hide,subsectionstyle=show/show/hide]\par}};
+  \end{tikzpicture}
+	\end{beamercolorbox}%
+}
+% >>>
+
+\mode<all>
+\endinput
+% vim: set fdm=marker fmr=<<<,>>> fdl=0:fdc=2

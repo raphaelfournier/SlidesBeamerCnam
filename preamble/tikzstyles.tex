@@ -1,0 +1,32 @@
+\tikzset{blueNode/.style={draw=blue, very thick, fill=blue!40, text=white}}
+\tikzset{yellowNode/.style={draw=brown, very thick, fill=yellow!40}}
+
+\tikzstyle{spring}=[thick,decorate,decoration={zigzag,pre length=0.1cm,post
+    length=0.1cm,segment length=6}]
+
+  \tikzstyle{springEdge}=[decoration={aspect=1, segment length=3mm, amplitude=3mm,coil},decorate]
+
+%\definecolor{myyellow}{RGB}{242,226,149}
+\definecolor{myyellow}{RGB}{253,228,103}
+\definecolor{mypurple}{RGB}{253,103,228}
+
+% O{} m O{} means 3 args, 1 and 3 being optional
+%\NewDocumentCommand\StickyNote{O{3.5cm}mO{3.5cm}}{%
+
+\NewDocumentCommand\StickyNote{O{3.5cm}mO{3.5cm}O{myyellow}}{%
+  \begin{tikzpicture}
+    \ECFTallPaul
+\node[
+drop shadow={
+  shadow xshift=2pt,
+  shadow yshift=-4pt
+},
+inner xsep=7pt,
+fill=#4,
+xslant=-0.05,
+yslant=0.05,
+inner ysep=10pt
+] {\parbox[t][#1][c]{#3}{#2}};
+\end{tikzpicture}%
+}
+

@@ -1,0 +1,94 @@
+% <<< Preamble 
+%% BEAMER THEME CNAM 2020: Main tex file for compiling
+%$ Compile this file. 
+%%
+%% Copyright 2020 Raphaël Fournier-S'niehotta
+%% This file may be distributed and/or modified
+%% 	1. under the LaTeX Project Public License and/or
+%% 	2. under the GNU Public License.
+%% 
+%% This theme is based on Flip's Theme by Flip Tanedo.
+%% This theme is based on Ithaca's Theme by Raul Gomez.
+
+%% Please see notes.txt for comments on this theme.
+%% By default, this template is meant to be run with XeLaTeX (for fonts)
+%% To run in PDFLaTeX, remove fontspec and any font commands
+
+%% Discussion of Beamer vs XeLaTeX vs LuaLaTeX
+%% http://tex.stackexchange.com/questions/29497/xelatex-preventing-beamer-from-using-different-backgrounds
+
+%\PassOptionsToPackage{draft}{graphicx}
+\documentclass[9pt,hyperref={pdfpagelabels=false}]{beamer}
+
+\makeatletter
+  \def\beamer@calltheme#1#2#3{%
+    \def\beamer@themelist{#2}
+    \@for\beamer@themename:=\beamer@themelist\do
+    {\usepackage[{#1}]{\beamer@themelocation/#3\beamer@themename}}}
+
+  \def\usefolder#1{
+    \def\beamer@themelocation{#1}
+  }
+  \def\beamer@themelocation{}
+
+% https://tex.stackexchange.com/questions/275600/beamer-themes-on-custom-folder
+\usefolder{themes}
+\usetheme[
+  %bullet=square,           % Default option: circle
+  %nobigpagenumber,         % No big circled page number on lower right
+  %nofootline,	      	     % No footline
+  grey,                    % For a neutral grey background color
+  %watermark=BG_both,	     % png file for the watermark
+]{Cnam}
+
+% >>>
+
+% <<< Includes: packages, macros
+\input{preamble/packages}    % It's much nicer to have all the content in a separate file
+\input{preamble/macros}      % nice ideas from others
+\input{preamble/newcommands}
+\input{preamble/colors}
+\input{preamble/tikzstyles}
+% >>>
+
+% <<< Global variables 
+\graphicspath{{./images/}{./figures/}}
+
+% layout of title page in ./themes/beamerinnerthemeflat.sty 
+\author[R. Fournier-S'niehotta]{Raphaël Fournier-S'niehotta}
+\institute[CNAM]{CNAM Paris}
+%\institute{}
+\logo{\includegraphics[width=2.6cm]{leCnamLogoTransparent.png}}
+\date{\today}
+\email{\texttt{fournier@cnam.fr}}
+\promo{HTT-FOD}
+\matiere{RCP216}
+\annee{2020-2021}
+
+\title[Visu Graphes]{Visualisation de graphes}
+\subtitle{Graphes -- 3e partie}
+% >>>
+
+\begin{document}
+
+% <<< Titlepage 
+\input{sections/titlepage.tex}
+% >>>
+
+% <<< Plan de la présentation
+\begin{frame}{Plan}
+  \tableofcontents[subsectionstyle=show]
+\end{frame}
+% >>>
+
+% <<< Contents
+\include{contents}
+% >>>
+
+% <<< References
+\section*{Références}
+\input{sections/references.tex}
+% >>>
+
+\end{document}
+% vim: set fdm=marker fmr=<<<,>>> fdl=0:fdc=2

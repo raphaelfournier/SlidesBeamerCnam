@@ -1,0 +1,85 @@
+% <<< From Dr Bunsen
+% adds reference to bottom right of corner of a slide
+\usepackage[absolute,overlay]{textpos} % text references in slide corners
+\newcommand\textref[1]{%
+  \begin{textblock*}{\paperwidth}(0pt,0.99\textheight)
+  \raggedleft \tiny{\emph{#1}}\hspace{.5em}
+  \end{textblock*}}
+
+% for drawing circles around numbers
+% ex. \circled{1} Add some text here.
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+% >>>
+
+% <<< From Execushares
+% disable "Figure:" in the captions
+\setbeamertemplate{caption}{\tiny\insertcaption}
+\setbeamertemplate{caption label separator}{}
+
+\setbeamertemplate{section in toc}{%
+\inserttocsectionnumber~|~\inserttocsection \par}
+
+%\setbeamertemplate{subsection in toc}{
+%-- \inserttocsubsection \par}
+% >>>
+
+% <<< custom variables
+\newcommand\insertpromo{}
+\newcommand\promo[1]{\renewcommand\insertpromo{#1}}
+\newcommand\insertmatiere{}
+\newcommand\matiere[1]{\renewcommand\insertmatiere{#1}}
+\newcommand\insertannee{}
+\newcommand\annee[1]{\renewcommand\insertannee{#1}}
+\newcommand\insertemail{}
+\newcommand\email[1]{\renewcommand\insertemail{#1}}
+% >>>
+
+% <<< materiel de cours
+\newcommand{\caveat}[1]{
+  \begin{itemize}
+    \item[\color{darkred}$\spadesuit$] \alert{#1}
+  \end{itemize}}
+
+%% Import a figure in a slide
+\newcommand{\figSlideWithSize}[2]{%
+\begin{center}
+   \includegraphics[width=#2]{#1}
+\end{center}
+}
+\newcommand{\guill}[1]{<<\,#1\,>>}
+\newcommand{\variable}[1]{{\bf \color{darkblue} #1}}
+\definecolor{darkblue}{rgb}{.0,.0,.6}
+
+\newcommand{\figSlide}[1]{%
+\begin{center}
+   \includegraphics{#1}
+\end{center}
+}
+
+% for tables
+\newcommand{\mcrot}[1]{\multicolumn{1}{l}{\rlap{\rotatebox{45}{#1}~}}} 
+\newcommand*{\twoelementtable}[3][l]%
+{%  
+  \renewcommand{\arraystretch}{0.8}%
+  \begin{tabular}[t]{@{}#1@{}}%
+    #2\tabularnewline
+    #3%
+  \end{tabular}%
+}
+
+\newcommand{\yes}{~x~}
+\newcommand{\nnn}{~-~}
+\newcommand{\yTwo}{\multicolumn{2}{c}{~x~}}
+\newcommand{\nTwo}{\multicolumn{2}{c}{~-~}}
+
+% >>>
+
+% <<< biblatex
+\DefineBibliographyStrings{english}{
+    and = {and}
+  }
+% >>>
+% vim: set fdm=marker fmr=<<<,>>> fdl=0:fdc=2
